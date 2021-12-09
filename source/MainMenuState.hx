@@ -36,7 +36,7 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
-
+    private var char1 Character: = null;
 	override function create()
 	{
 		#if desktop
@@ -95,7 +95,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
 			// menuItem.screenCenter(X);
-			menuItem.x += 290;
+			menuItem.x += 300;
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
@@ -106,7 +106,13 @@ class MainMenuState extends MusicBeatState
 		}
 
 		FlxG.camera.follow(camFollowPos, null, 1);
-
+		
+		char1 = new Character(300, -130), 'dad' true);
+		char1.setGraphicSize(Std.int(char1.width *0.8)) ;
+		add(char1);
+		char1.visible = false;
+		
+		
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -161,6 +167,20 @@ class MainMenuState extends MusicBeatState
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 5.6, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 
+        if (optionShit[curSelected] == 'story_mode') 
+        {
+            changeItem(-1) ;
+            changeItem(1) ;
+            
+            char1.dance();
+            char1.updateHitbox();
+            char1.visible = true;
+        }
+         else
+         {
+            char1.visible = false;
+         }
+         
 		if (!selectedSomethin)
 		{
 			if (controls.UI_UP_P)
@@ -186,7 +206,7 @@ class MainMenuState extends MusicBeatState
 			{
 				if (optionShit[curSelected] == 'donate')
 				{
-					CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
+					CoolUtil.browserLoad('https://youtube.com/channel/UChE0s906J1YZRf1Ln9wP8Gg');
 				}
 				else
 				{
