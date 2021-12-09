@@ -36,7 +36,7 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
-    private var char1 Character: = null;
+    private var char1:Character: = null;
 	override function create()
 	{
 		#if desktop
@@ -107,7 +107,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 		
-		char1 = new Character(300, -130), 'bf' true);
+		char1 = new Character(800,  -130), 'bf' true);
 		char1.setGraphicSize(Std.int(char1.width *0.8));
 		add(char1);
 		char1.visible = false;
@@ -169,8 +169,8 @@ class MainMenuState extends MusicBeatState
 
         if (optionShit[curSelected] == 'story_mode') 
         {
-            changeItem(-1) ;
-            changeItem(1) ;
+            changeItem(-1);
+            changeItem(1);
             
             char1.dance();
             char1.updateHitbox();
